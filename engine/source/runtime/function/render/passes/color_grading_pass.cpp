@@ -25,6 +25,7 @@ namespace Piccolo
 
     void ColorGradingPass::setupDescriptorSetLayout()
     {
+        //- shader中使用的输入输出资源的排布
         m_descriptor_infos.resize(1);
 
         RHIDescriptorSetLayoutBinding post_process_global_layout_bindings[2] = {};
@@ -206,6 +207,7 @@ namespace Piccolo
 
     void ColorGradingPass::updateAfterFramebufferRecreate(RHIImageView* input_attachment)
     {
+        //- 视口发生变化时的更新操作
         RHIDescriptorImageInfo post_process_per_frame_input_attachment_info = {};
         post_process_per_frame_input_attachment_info.sampler =
             m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
