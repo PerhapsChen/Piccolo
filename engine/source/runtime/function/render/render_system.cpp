@@ -97,19 +97,19 @@ namespace Piccolo
     void RenderSystem::tick(float delta_time)
     {
         // process swap data between logic and render contexts
-        processSwapData();
+        processSwapData();  //- 从逻辑拿数据
 
         // prepare render command context
-        m_rhi->prepareContext();
+        m_rhi->prepareContext(); //- 调用一些图形API进行渲染准备
 
-        // update per-frame buffer
+        // update per-frame buffer //- 准备每一帧pass共用的数据
         m_render_resource->updatePerFrameBuffer(m_render_scene, m_render_camera);
 
-        // update per-frame visible objects
+        // update per-frame visible objects //- 为各个pass筛选具体的数据
         m_render_scene->updateVisibleObjects(std::static_pointer_cast<RenderResource>(m_render_resource),
                                              m_render_camera);
 
-        // prepare pipeline's render passes data
+        // prepare pipeline's render passes data //- 各个pass的数据准备
         m_render_pipeline->preparePassData(m_render_resource);
 
         g_runtime_global_context.m_debugdraw_manager->tick(delta_time);
