@@ -7,7 +7,7 @@ namespace Piccolo
     struct VignettePassInitInfo : RenderPassInitInfo
     {
         RHIRenderPass* render_pass;
-        RHIImageView* input_attachment;
+        RHIImageView*  input_attachment;
     };
 
     class VignettePass : public RenderPass
